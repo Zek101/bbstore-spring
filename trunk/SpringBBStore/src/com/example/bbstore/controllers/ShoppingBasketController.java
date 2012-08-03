@@ -16,11 +16,12 @@ import com.example.bbstore.dom.ShoppingBasket;
 
 @Controller
 public class ShoppingBasketController {
+    
     @Autowired    BookDao bDao;
+    @Autowired     ShoppingBasket bookBasket;
     
     @RequestMapping(value="/addbooktobasket")
     public ModelAndView addToBasket(@RequestParam("isbn")String bookIsbn,HttpSession session){
-        ShoppingBasket bookBasket = (ShoppingBasket)session.getAttribute("bookBasket");
         if (bookBasket == null){
             bookBasket = new ShoppingBasket();
             session.setAttribute("bookBasket", bookBasket);
@@ -37,14 +38,12 @@ public class ShoppingBasketController {
     
     @RequestMapping(value={"/viewshoppingcart"})
     public String createShoppingBasketForm(HttpSession session){
-        ShoppingBasket bookBasket = (ShoppingBasket)session.getAttribute("bookBasket");
         ModelAndView mv =new ModelAndView("shoppingbasket");
         mv.addObject( "shopBasket",bookBasket);
         return "shoppingbasket";
     } 
     @RequestMapping(value={"/removefrombasket"})
     public String removeFromBasket(HttpSession session, @RequestParam("bookId")Long bookId){
-        ShoppingBasket bookBasket = (ShoppingBasket)session.getAttribute("bookBasket");
         bookBasket.remove(bDao.find(bookId));
         return "shoppingbasket";
     } 
