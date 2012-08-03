@@ -22,10 +22,11 @@ import com.example.bbstore.dao.BookDao;
 public class ListBookControler {
     @Autowired    BookDao bDao;
     @Autowired    AuthorDao aDao;
-
+    @Autowired     ShoppingBasket bookBasket;
+    
     @RequestMapping(value="/viewlist")
     public ModelAndView viewBookList(HttpSession session){
-        ShoppingBasket bookBasket = (ShoppingBasket)session.getAttribute("bookBasket");
+        
         if (bookBasket == null){
             bookBasket = new ShoppingBasket();
             session.setAttribute("bookBasket", bookBasket);
