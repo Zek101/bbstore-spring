@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 @Component 
-@Scope(value="session",proxyMode=ScopedProxyMode.INTERFACES)
+@Scope(value="session")
 
 public class ShoppingBasket {
     List<Book> bookList = new ArrayList<Book>();
