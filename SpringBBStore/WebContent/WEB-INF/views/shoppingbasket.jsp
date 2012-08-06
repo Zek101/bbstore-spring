@@ -9,7 +9,8 @@
 </head>
 <body>
 	<center>
-		<h1>Your basket</h1>
+		<h1>Your basket</h1><br>
+		${bookBasket.getList().size()} Books in the Basket<br>
 		<table>
 			<c:forEach items="${bookBasket.getList()}" var="book">
 				<tr>

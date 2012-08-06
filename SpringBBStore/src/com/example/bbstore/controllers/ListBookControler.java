@@ -25,11 +25,11 @@ public class ListBookControler {
     @Autowired     ShoppingBasket bookBasket;
     
     @RequestMapping(value="/viewlist")
-    public ModelAndView viewBookList(HttpSession session){
+    public ModelAndView viewBookList(){
         
         if (bookBasket == null){
             bookBasket = new ShoppingBasket();
-            session.setAttribute("bookBasket", bookBasket);
+           // session.setAttribute("bookBasket", bookBasket);
         }
         List<Book> lb = bDao.getAllBooks();
         ModelAndView mv =new ModelAndView("booklist");
@@ -39,8 +39,8 @@ public class ListBookControler {
     } 
     
     @RequestMapping(value="/vieweditlist")
-    public  ModelAndView viewBookListToEdit(HttpSession session){
-        ModelAndView mv = viewBookList(session);
+    public  ModelAndView viewBookListToEdit(){
+        ModelAndView mv = viewBookList();
         mv.addObject("edit","1");
         return mv;
     }

@@ -46,4 +46,7 @@ public class Book extends BaseEntity {
     }
     
 
+    public String toString() {
+        return this.getTitle();
+    }
 }

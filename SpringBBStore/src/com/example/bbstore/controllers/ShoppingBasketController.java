@@ -21,13 +21,8 @@ public class ShoppingBasketController {
     @Autowired     ShoppingBasket bookBasket;
     
     @RequestMapping(value="/addbooktobasket")
-    public ModelAndView addToBasket(@RequestParam("isbn")String bookIsbn,HttpSession session){
-        if (bookBasket == null){
-            bookBasket = new ShoppingBasket();
-            session.setAttribute("bookBasket", bookBasket);
-        }
+    public ModelAndView addToBasket(@RequestParam("isbn")String bookIsbn){
         bookBasket.addBook(bDao.getBookByIsbn(bookIsbn));
-        
         List<Book> lb = bDao.getAllBooks();
         ModelAndView mv =new ModelAndView("booklist");
         mv.addObject( "listBook",lb);
@@ -37,10 +32,10 @@ public class ShoppingBasketController {
     } 
     
     @RequestMapping(value={"/viewshoppingcart"})
-    public String createShoppingBasketForm(HttpSession session){
+    public ModelAndView createShoppingBasketForm(HttpSession session){
         ModelAndView mv =new ModelAndView("shoppingbasket");
-        mv.addObject( "shopBasket",bookBasket);
-        return "shoppingbasket";
+        mv.addObject( "bookBasket",bookBasket);
+        return mv;
     } 
     @RequestMapping(value={"/removefrombasket"})
     public String removeFromBasket(HttpSession session, @RequestParam("bookId")Long bookId){
