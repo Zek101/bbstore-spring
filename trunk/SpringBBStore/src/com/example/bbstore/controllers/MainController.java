@@ -1,21 +1,12 @@
 package com.example.bbstore.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.bbstore.dom.Book;
 import com.example.bbstore.dom.ShoppingBasket;
 
 import com.example.bbstore.dao.AuthorDao;
@@ -28,17 +19,15 @@ public class MainController{
 
     @Autowired    BookDao bDao;
     @Autowired    AuthorDao aDao;
+    @Autowired     ShoppingBasket bookBasket;
 
    
  
     @RequestMapping(value={"/index","/",""})
-    public String backToMenu(HttpSession session){
-        ShoppingBasket bookBasket = (ShoppingBasket)session.getAttribute("bookBasket");
-        if (bookBasket == null){
-            bookBasket = new ShoppingBasket();
-            session.setAttribute("bookBasket", bookBasket);
-        }
-        return "index";
+    public ModelAndView backToMenu(HttpSession session){
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject( "bookBasket",bookBasket);
+        return mv;
     } 
    
 
