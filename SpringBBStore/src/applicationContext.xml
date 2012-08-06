@@ -13,6 +13,7 @@
 			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
+    <aop:scoped-proxy/>
 	<context:annotation-config />
 	<context:component-scan base-package="com.example.bbstore" />
 	<bean id="entityManagerFactory"
