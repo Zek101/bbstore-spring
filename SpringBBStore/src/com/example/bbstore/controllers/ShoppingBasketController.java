@@ -2,7 +2,7 @@ package com.example.bbstore.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,27 +18,23 @@ import com.example.bbstore.dom.ShoppingBasket;
 public class ShoppingBasketController {
     
     @Autowired    BookDao bDao;
-    @Autowired     ShoppingBasket bookBasket;
+    @Autowired    ShoppingBasket bookBasket;
+    @Autowired    ListBookController lbc;
     
     @RequestMapping(value="/addbooktobasket")
     public ModelAndView addToBasket(@RequestParam("isbn")String bookIsbn){
         bookBasket.addBook(bDao.getBookByIsbn(bookIsbn));
-        List<Book> lb = bDao.getAllBooks();
-        ModelAndView mv =new ModelAndView("booklist");
-        mv.addObject( "listBook",lb);
-        mv.addObject( "bookBasket",bookBasket);
-        
-        return mv;
+        return lbc.viewBookList();
     } 
     
     @RequestMapping(value={"/viewshoppingcart"})
-    public ModelAndView createShoppingBasketForm(HttpSession session){
+    public ModelAndView createShoppingBasketForm(){
         ModelAndView mv =new ModelAndView("shoppingbasket");
         mv.addObject( "bookBasket",bookBasket);
         return mv;
     } 
     @RequestMapping(value={"/removefrombasket"})
-    public String removeFromBasket(HttpSession session, @RequestParam("bookId")Long bookId){
+    public String removeFromBasket( @RequestParam("bookId")Long bookId){
         bookBasket.remove(bDao.find(bookId));
         return "shoppingbasket";
     } 

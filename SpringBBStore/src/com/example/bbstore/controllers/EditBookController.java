@@ -1,7 +1,5 @@
 package com.example.bbstore.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,21 +16,26 @@ public class EditBookController {
 
     @Autowired    BookDao bDao;
     @Autowired    AuthorDao aDao;
+    @Autowired    ListBookController lbc;
 
-
-    @RequestMapping(value={"/updatebook"})
-    public ModelAndView updateBook(@ModelAttribute Book bk){
-        bDao.updateBook(bk);
-        List<Book> lb = bDao.getAllBooks();
-        ModelAndView mv = new ModelAndView("booklist", "listBook",lb);
-        mv.addObject("edit","1");
+    @RequestMapping(value={"/editbook"})
+    public ModelAndView editBook(@ModelAttribute Book bk){
+        ModelAndView mv = new ModelAndView("editbook");
+        mv.addObject( "book",bk);
+        mv.addObject( "listAuthor",aDao.getAllAuthors());
         return mv;
+    }
+    
+    @RequestMapping(value={"/updatebook"})
+    public ModelAndView updateBook(@ModelAttribute Book bk,@RequestParam("idAuthor") Long idAuthor){
+        bk.setAuthor(aDao.find(idAuthor));
+        bDao.updateBook(bk);
+        return lbc.viewBookListToEdit();
     }
 
     @ModelAttribute
-    public Book findBook(@RequestParam("id")Long id ,@RequestParam("idAuthor") Long idAuthor){
+    public Book findBook(@RequestParam("id")Long id ){
         Book result = bDao.find(id);
-        result.setAuthor(aDao.find(idAuthor));
         return  result;
     }
     
