@@ -10,16 +10,17 @@ import com.example.bbstore.dao.AuthorDao;
 
 @Controller
 public class AddAuthorController {
-    @Autowired    AuthorDao aDao;
+    @Autowired    AuthorDao authorDao;
     
     @RequestMapping(value={"/createAuthor"})
-    public String createAuthorForm(){
-        return "newauthor";
+    public String createAuthor(){
+        return "addauthor";
     } 
+    
     @RequestMapping(value={"/addauthor"})
-    public String createNewAuthor( @RequestParam("name")String name, @RequestParam("forname") String forname){
+    public String addAuthor( @RequestParam("name")String name, @RequestParam("forname") String forname){
 
-        aDao.addAuthor(name,forname);
+        authorDao.addAuthor(name,forname);
         return "index";
     } 
 }

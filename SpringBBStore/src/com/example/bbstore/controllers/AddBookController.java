@@ -12,24 +12,24 @@ import com.example.bbstore.dom.Book;
 
 @Controller
 public class AddBookController {
-    @Autowired    BookDao bDao;
-    @Autowired    AuthorDao aDao;
+    @Autowired    BookDao bookDao;
+    @Autowired    AuthorDao authorDao;
     
     
     @RequestMapping(value={"/createbook"})
     public ModelAndView createNewBookForm(){
-        ModelAndView mv = new ModelAndView( "newbook");
-        mv.addObject("listAuthor",aDao.getAllAuthors());
+        ModelAndView mv = new ModelAndView( "addbook");
+        mv.addObject("listAuthor",authorDao.getAllAuthors());
         return mv;
     } 
     
     @RequestMapping(value={"/addbook"})
-    public ModelAndView addBook(@RequestParam("isbn") String isbn,
+    public String addBook(@RequestParam("isbn") String isbn,
                                 @RequestParam("title") String title,
                                 @RequestParam("idAuthor") long authorid,
                                 @RequestParam("price") String price){
-        Book bk =new Book(isbn,title,aDao.find(authorid),Integer.parseInt(price));
-        bDao.addBook(bk);
-        return new ModelAndView("index", "book","");
+        Book bk =new Book(isbn,title,authorDao.find(authorid),Integer.parseInt(price));
+        bookDao.addBook(bk);
+        return "index";
     } 
 }
