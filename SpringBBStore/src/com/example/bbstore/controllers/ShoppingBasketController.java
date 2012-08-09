@@ -17,8 +17,8 @@ public class ShoppingBasketController {
     @Autowired    ListBookController listBookController;
     
     @RequestMapping(value="/addbooktobasket")
-    public ModelAndView addBookToBasket(@RequestParam("isbn")String bookIsbn){
-        shoppingBasket.addBook(bookDao.getBookByIsbn(bookIsbn));
+    public ModelAndView addBookToBasket(@RequestParam("id")Long id){
+        shoppingBasket.addBook(bookDao.find(id));
         return listBookController.viewList("0");
     } 
     
@@ -29,8 +29,8 @@ public class ShoppingBasketController {
         return mv;
     } 
     @RequestMapping(value={"/removefrombasket"})
-    public String removeFromBasket( @RequestParam("bookId")Long bookId){
+    public ModelAndView removeFromBasket( @RequestParam("bookId")Long bookId){
         shoppingBasket.remove(bookDao.find(bookId));
-        return "shoppingbasket";
+        return viewShoppingCart();
     } 
 }

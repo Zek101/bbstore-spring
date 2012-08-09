@@ -6,8 +6,9 @@ import javax.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 @Transactional
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked","rawtypes"})
 public class BaseRepository<E extends BaseEntity> {
     Class entityClass;
     

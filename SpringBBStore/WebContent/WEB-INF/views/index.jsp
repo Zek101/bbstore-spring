@@ -32,7 +32,7 @@ pageEncoding="ISO-8859-1"%>
 					<ul>
 						<li><a href="viewlist?edit=0">View Books list</a></li>
 						<c:choose>
-							<c:when test="${bookBasket.getList().size()>0}">
+							<c:when test="${shoppingBasket.getList().size()>0}">
 							
 						<li><a href="viewshoppingcart">View Shopping Basket</a></li>
 							</c:when>

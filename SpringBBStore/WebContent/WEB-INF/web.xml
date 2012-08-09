@@ -30,7 +30,4 @@
   		org.springframework.web.context.ContextLoaderListener
   	</listener-class>
   </listener>
-  <listener>
-    <listener-class>com.example.bbstore.listener.ServerListener</listener-class>
-  </listener>
 </web-app>
