@@ -2,11 +2,8 @@ package com.example.bbstore.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,18 +16,15 @@ import com.example.bbstore.dao.BookDao;
 
 
 @Controller
-public class ListBookControler {
+public class ListBookController {
     @Autowired    BookDao bDao;
     @Autowired    AuthorDao aDao;
-    @Autowired     ShoppingBasket bookBasket;
+    @Autowired    ShoppingBasket bookBasket;
     
     @RequestMapping(value="/viewlist")
     public ModelAndView viewBookList(){
         
-        if (bookBasket == null){
-            bookBasket = new ShoppingBasket();
-           // session.setAttribute("bookBasket", bookBasket);
-        }
+
         List<Book> lb = bDao.getAllBooks();
         ModelAndView mv =new ModelAndView("booklist");
         mv.addObject( "listBook",lb);
@@ -44,12 +38,6 @@ public class ListBookControler {
         mv.addObject("edit","1");
         return mv;
     }
-    @RequestMapping(value={"/editbook"})
-    public ModelAndView editBook(@RequestParam("isbn") String isbn){
-        ModelAndView mv = new ModelAndView("editbook");
-        mv.addObject( "book",bDao.getBookByIsbn(isbn));
-        mv.addObject( "listAuthor",aDao.getAllAuthors());
-        return mv;
-    }
+   
     
 }

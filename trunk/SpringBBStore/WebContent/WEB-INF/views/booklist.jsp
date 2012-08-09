@@ -33,15 +33,14 @@
 					<td><c:choose>
 							<c:when test="${edit==1}">
 								<form method="post" action="editbook">
-
-									<input type="hidden" name="isbn" value="${book.getIsbn()}" /> <input
-										type="submit" value="Edit" />
+									<input type="hidden" name="id" value="${book.getId()}" /> 
+									<input type="submit" value="Edit" />
 								</form>
 							</c:when>
 							<c:otherwise>
 								<form method="post" action="addbooktobasket">
-									<input type="hidden" name="isbn" value="${book.getIsbn()}" /> <input
-										type="submit" value="Buy" />
+									<input type="hidden" name="id" value="${book.getId()}" /> 
+									<input type="submit" value="Buy" />
 								</form>
 							</c:otherwise>
 						</c:choose></td>
