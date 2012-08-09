@@ -20,7 +20,7 @@ public class AuthorDao extends BaseRepository<Author>{
         }
         return lp;
     }
-    public void addAuthor(Author author){
+    public void persist(Author author){
         em.persist(author);
        
     }
@@ -30,7 +30,7 @@ public class AuthorDao extends BaseRepository<Author>{
         a.setName(name);
         em.persist(a);
     }
-    public void updateAuthor(Author bk){
+    public void merge(Author bk){
         em.merge(bk);
        
    }

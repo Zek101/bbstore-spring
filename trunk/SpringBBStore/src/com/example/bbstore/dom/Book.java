@@ -1,12 +1,15 @@
 package com.example.bbstore.dom;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.example.bbstore.dao.BaseEntity;
 
 
+@SuppressWarnings("serial")
 @Entity
-public class Book extends BaseEntity {
+public class Book extends BaseEntity implements Serializable{
     private String isbn;
     private String title;
     @ManyToOne(fetch= FetchType.LAZY)

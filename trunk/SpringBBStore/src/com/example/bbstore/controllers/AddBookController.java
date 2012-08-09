@@ -2,6 +2,7 @@ package com.example.bbstore.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +25,9 @@ public class AddBookController {
     } 
     
     @RequestMapping(value={"/addbook"})
-    public String addBook(@RequestParam("isbn") String isbn,
-                                @RequestParam("title") String title,
-                                @RequestParam("idAuthor") long authorid,
-                                @RequestParam("price") String price){
-        Book bk =new Book(isbn,title,authorDao.find(authorid),Integer.parseInt(price));
-        bookDao.addBook(bk);
+    public String addBook(@ModelAttribute Book bk, @RequestParam("idAuthor") long authorid){
+        bk.setAuthor(authorDao.find(authorid));
+        bookDao.persist(bk);
         return "index";
     } 
 }

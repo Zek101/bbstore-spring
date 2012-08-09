@@ -29,7 +29,7 @@ public class EditBookController {
     @RequestMapping(value={"/updatebook"})
     public ModelAndView updateBook(@ModelAttribute Book bk,@RequestParam("idAuthor") Long idAuthor){
         bk.setAuthor(authorDao.find(idAuthor));
-        bookDao.updateBook(bk);
+        bookDao.merge(bk);
         return listBookController.viewList("1");
     }
 

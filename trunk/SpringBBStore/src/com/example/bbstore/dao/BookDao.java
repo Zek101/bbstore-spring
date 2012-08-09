@@ -22,7 +22,7 @@ public class BookDao extends BaseRepository<Book>{
         return lp;
     }
     
-    public boolean addBook(Book bk){
+    public boolean persist(Book bk){
         Long i = (Long)em.createQuery("select count(b) from Book b where b.isbn = :isbn")
         .setParameter("isbn", bk.getIsbn()).getSingleResult();
         if (i>0){
@@ -32,7 +32,7 @@ public class BookDao extends BaseRepository<Book>{
         return true;
     }
     
-    public void updateBook(Book bk){
+    public void merge(Book bk){
          em.merge(bk);
         
     }
