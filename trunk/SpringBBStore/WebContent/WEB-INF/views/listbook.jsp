@@ -11,7 +11,7 @@
 	<center>
 		<h1>Book list</h1>
 		<br>
-		<c:if test="${edit!=1}">
+		<c:if test="${!edit.equals('1')}">
 	${bookBasket.getList().size()} Books in the Basket<br>
 		</c:if>
 
@@ -31,7 +31,7 @@
 					<td>${book.getIsbn()}</td>
 					<td>${book.getPrice()} euros</td>
 					<td><c:choose>
-							<c:when test="${edit==1}">
+							<c:when test="${edit.equals('1')}">
 								<form method="post" action="editbook">
 									<input type="hidden" name="id" value="${book.getId()}" /> 
 									<input type="submit" value="Edit" />

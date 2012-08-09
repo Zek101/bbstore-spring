@@ -17,27 +17,19 @@ import com.example.bbstore.dao.BookDao;
 
 @Controller
 public class ListBookController {
-    @Autowired    BookDao bDao;
-    @Autowired    AuthorDao aDao;
-    @Autowired    ShoppingBasket bookBasket;
+    @Autowired    BookDao bookDao;
+    @Autowired    AuthorDao authorDao;
+    @Autowired    ShoppingBasket shoppingBasket;
     
     @RequestMapping(value="/viewlist")
-    public ModelAndView viewBookList(){
-        
+    public ModelAndView viewList(@RequestParam(value ="edit")String edit){
 
-        List<Book> lb = bDao.getAllBooks();
-        ModelAndView mv =new ModelAndView("booklist");
+        List<Book> lb = bookDao.getAllBooks();
+        ModelAndView mv =new ModelAndView("listbook");
         mv.addObject( "listBook",lb);
-        mv.addObject( "bookBasket",bookBasket);
+        mv.addObject( "bookBasket",shoppingBasket);
+        mv.addObject("edit",edit);
         return mv;
     } 
-    
-    @RequestMapping(value="/vieweditlist")
-    public  ModelAndView viewBookListToEdit(){
-        ModelAndView mv = viewBookList();
-        mv.addObject("edit","1");
-        return mv;
-    }
-   
-    
+
 }

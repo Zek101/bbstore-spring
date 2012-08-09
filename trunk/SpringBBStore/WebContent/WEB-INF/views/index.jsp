@@ -19,7 +19,7 @@ pageEncoding="ISO-8859-1"%>
 
 					</center>
 					<ul>
-						<li><a href="vieweditlist">Edit book</a></li>
+						<li><a href="viewlist?edit=1">Edit book</a></li>
 						<li><a href="createbook">Add new book</a></li>
 						<li><a href="createAuthor">Add new author</a></li>
 					</ul>
@@ -30,7 +30,7 @@ pageEncoding="ISO-8859-1"%>
 
 					</center>
 					<ul>
-						<li><a href="viewlist">View Books list</a></li>
+						<li><a href="viewlist?edit=0">View Books list</a></li>
 						<c:choose>
 							<c:when test="${bookBasket.getList().size()>0}">
 							
