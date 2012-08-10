@@ -15,7 +15,7 @@ import com.example.bbstore.dom.Book;
 public class AddBookController {
     @Autowired    BookDao bookDao;
     @Autowired    AuthorDao authorDao;
-    
+	@Autowired 	  MenuController menu;
     
     @RequestMapping(value={"/createbook"})
     public ModelAndView createNewBookForm(){
@@ -25,9 +25,9 @@ public class AddBookController {
     } 
     
     @RequestMapping(value={"/addbook"})
-    public String addBook(@ModelAttribute Book bk, @RequestParam("idAuthor") long authorid){
+    public ModelAndView addBook(@ModelAttribute Book bk, @RequestParam("idAuthor") long authorid){
         bk.setAuthor(authorDao.find(authorid));
         bookDao.persist(bk);
-        return "index";
+        return menu.showMenu();
     } 
 }

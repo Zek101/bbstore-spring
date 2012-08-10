@@ -22,9 +22,8 @@ public class ListBookController {
     @Autowired    ShoppingBasket shoppingBasket;
     
     @RequestMapping(value="/viewlist")
-    public ModelAndView viewList(@RequestParam(value ="edit")String edit){
-
-        List<Book> lb = bookDao.getAllBooks();
+    public ModelAndView viewList(@RequestParam(value ="edit")boolean edit){
+        List<Book> lb = bookDao.findAllBooks();
         ModelAndView mv =new ModelAndView("listbook");
         mv.addObject( "listBook",lb);
         mv.addObject( "bookBasket",shoppingBasket);

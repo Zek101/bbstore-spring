@@ -2,13 +2,13 @@ package com.example.bbstore.dom;
 
 import javax.persistence.Entity;
 
-import com.example.bbstore.dao.BaseEntity;
 
 
 @Entity
 public class Author extends BaseEntity {
     private String name;
     private String forname;
+    
     public String getName() {
         return name;
     }
@@ -20,5 +20,10 @@ public class Author extends BaseEntity {
     }
     public void setForname(String forname) {
         this.forname = forname;
+    }
+    
+    public String getFullName()
+    {
+    	return name+" "+forname;
     }
 }

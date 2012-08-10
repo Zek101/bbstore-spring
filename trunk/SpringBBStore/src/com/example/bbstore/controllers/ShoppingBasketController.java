@@ -19,7 +19,7 @@ public class ShoppingBasketController {
     @RequestMapping(value="/addbooktobasket")
     public ModelAndView addBookToBasket(@RequestParam("id")Long id){
         shoppingBasket.addBook(bookDao.find(id));
-        return listBookController.viewList("0");
+        return listBookController.viewList(false);
     } 
     
     @RequestMapping(value={"/viewshoppingcart"})

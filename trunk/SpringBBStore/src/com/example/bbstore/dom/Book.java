@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import com.example.bbstore.dao.BaseEntity;
 
 
 @SuppressWarnings("serial")

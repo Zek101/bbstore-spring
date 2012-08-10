@@ -5,6 +5,8 @@ import java.lang.reflect.Type;
 import javax.persistence.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.bbstore.dom.BaseEntity;
+
 
 
 @Transactional
@@ -36,16 +38,16 @@ public class BaseRepository<E extends BaseEntity> {
         return ( E ) em.find( entityClass, id );
     }
     
-    public void create(E entity){
+    public void persist(E entity){
         em.persist(entity);
     }
     
-    public E update(E entity){
+    public E merge(E entity){
         return em.merge( entity );
     }
     
-    public void delete(E entity){
-        em.getTransaction().commit();
+    public void remove(E entity){
+        em.remove(entity);
     }
     protected EntityManager getEntityManager() {
         return em;
