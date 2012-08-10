@@ -25,10 +25,10 @@ public class AddUserController {
 	}
 	
 	@RequestMapping("/saveUser")
-	public ModelAndView saveUser(@ModelAttribute User usr)
+	public String saveUser(@ModelAttribute User usr)
 	{
 		userDao.merge(usr);
-		return menu.showMenu();
+		return "forward:/index";
 	}
 	
 }

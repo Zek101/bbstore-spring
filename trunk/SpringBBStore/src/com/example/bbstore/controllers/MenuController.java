@@ -18,5 +18,8 @@ public class MenuController{
     public ModelAndView showMenu(){
         return new ModelAndView("menu","shoppingBasket",shoppingBasket);
     } 
+    public ModelAndView redirectMenu(){
+        return new ModelAndView("menu","shoppingBasket",shoppingBasket);
+    } 
        
 }
