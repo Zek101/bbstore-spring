@@ -14,7 +14,7 @@ public class IndexController{
     @Autowired    ShoppingBasket shoppingBasket;
   
  
-    @RequestMapping(value={"/index","/",""})
+    @RequestMapping("/")
     public ModelAndView showIndex(){
         return new ModelAndView("index","shoppingBasket",shoppingBasket);
     } 
