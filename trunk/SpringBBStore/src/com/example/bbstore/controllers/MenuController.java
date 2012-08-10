@@ -14,7 +14,7 @@ public class MenuController{
     @Autowired    ShoppingBasket shoppingBasket;
   
  
-    @RequestMapping(value={"/index","/",""})
+    @RequestMapping(value={"/menu","/index"})
     public ModelAndView showMenu(){
         return new ModelAndView("menu","shoppingBasket",shoppingBasket);
     } 
