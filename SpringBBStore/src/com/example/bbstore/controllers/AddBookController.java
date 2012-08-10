@@ -1,5 +1,7 @@
 package com.example.bbstore.controllers;
 
+import java.awt.Menu;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +30,6 @@ public class AddBookController {
     public ModelAndView addBook(@ModelAttribute Book bk, @RequestParam("idAuthor") long authorid){
         bk.setAuthor(authorDao.find(authorid));
         bookDao.persist(bk);
-        return menu.showMenu();
+        return menu.redirectMenu(); 
     } 
 }
