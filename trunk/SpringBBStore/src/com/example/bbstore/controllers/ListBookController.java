@@ -25,9 +25,9 @@ public class ListBookController {
     public ModelAndView viewList(@RequestParam(value ="edit")boolean edit){
         List<Book> lb = bookDao.findAllBooks();
         ModelAndView mv =new ModelAndView("listbook");
-        mv.addObject( "listBook",lb);
-        mv.addObject( "bookBasket",shoppingBasket);
-        mv.addObject("edit",edit);
+        mv.addObject( "listBook", lb);
+        mv.addObject( "bookBasket", shoppingBasket);
+        mv.addObject("edit", edit);
         return mv;
     } 
 
