@@ -4,8 +4,11 @@ package com.example.bbstore.dom;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name="userBB")
 public class User extends BaseEntity{
 	
 	public enum Role
