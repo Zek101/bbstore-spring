@@ -28,6 +28,6 @@ public class AddBookController {
     public ModelAndView addBook(@ModelAttribute Book bk, @RequestParam("idAuthor") long authorid){
         bk.setAuthor(authorDao.find(authorid));
         bookDao.persist(bk);
-        return menu.redirectToMenu(); 
+        return menu.redirectMenu(); 
     } 
 }
